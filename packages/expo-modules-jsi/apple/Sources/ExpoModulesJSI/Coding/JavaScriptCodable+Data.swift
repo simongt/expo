@@ -11,6 +11,18 @@ import Foundation
 extension Data: JavaScriptCodable {
   @JavaScriptActor
   @inlinable
+  public static func canDecode(_ value: borrowing JavaScriptValue) -> Bool {
+    return value.isObject()
+  }
+
+  @JavaScriptActor
+  @inlinable
+  public static func canDecode(_ value: borrowing JavaScriptUnownedValue) -> Bool {
+    return value.isObject()
+  }
+
+  @JavaScriptActor
+  @inlinable
   public static func decode(_ value: borrowing JavaScriptValue, in runtime: borrowing JavaScriptRuntime) throws -> Data
   {
     guard value.isTypedArray() else {

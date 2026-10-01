@@ -9,6 +9,18 @@ import ExpoModulesJSI
 extension SharedObject: JavaScriptDecodable, JavaScriptEncodable {
   @JavaScriptActor
   @inlinable
+  public static func canDecode(_ value: borrowing JavaScriptValue) -> Bool {
+    return value.isObject()
+  }
+
+  @JavaScriptActor
+  @inlinable
+  public static func canDecode(_ value: borrowing JavaScriptUnownedValue) -> Bool {
+    return value.isObject()
+  }
+
+  @JavaScriptActor
+  @inlinable
   public static func decode(_ value: borrowing JavaScriptValue, in runtime: borrowing JavaScriptRuntime) throws -> Self
   {
     // Reads the native object off the JS object's `SharedObjectNativeState` (no app context needed).

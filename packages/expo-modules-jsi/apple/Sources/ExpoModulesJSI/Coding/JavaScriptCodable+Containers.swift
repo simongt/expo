@@ -10,6 +10,19 @@
 // MARK: - Array
 
 extension Array: JavaScriptDecodable where Element: JavaScriptDecodable {
+  // A non-array value is decoded as a single-element array, so it's accepted when the element is.
+  @JavaScriptActor
+  @inlinable
+  public static func canDecode(_ value: borrowing JavaScriptValue) -> Bool {
+    return value.isObject() || Element.canDecode(value)
+  }
+
+  @JavaScriptActor
+  @inlinable
+  public static func canDecode(_ value: borrowing JavaScriptUnownedValue) -> Bool {
+    return value.isObject() || Element.canDecode(value)
+  }
+
   @JavaScriptActor
   @inlinable
   public static func decode(_ value: borrowing JavaScriptValue, in runtime: borrowing JavaScriptRuntime) throws
@@ -45,6 +58,18 @@ extension Array: JavaScriptEncodable where Element: JavaScriptEncodable {
 // MARK: - Optional
 
 extension Optional: JavaScriptDecodable where Wrapped: JavaScriptDecodable {
+  @JavaScriptActor
+  @inlinable
+  public static func canDecode(_ value: borrowing JavaScriptValue) -> Bool {
+    return value.isNull() || value.isUndefined() || Wrapped.canDecode(value)
+  }
+
+  @JavaScriptActor
+  @inlinable
+  public static func canDecode(_ value: borrowing JavaScriptUnownedValue) -> Bool {
+    return value.isNull() || value.isUndefined() || Wrapped.canDecode(value)
+  }
+
   // Optional copies nothing itself, so it overrides the zero-copy overload too and forwards the
   // borrowed value straight through — a wrapped primitive argument stays fully zero-copy.
   @JavaScriptActor
@@ -87,6 +112,18 @@ extension Optional: JavaScriptEncodable where Wrapped: JavaScriptEncodable {
 // MARK: - Dictionary
 
 extension Dictionary: JavaScriptDecodable where Key == String, Value: JavaScriptDecodable {
+  @JavaScriptActor
+  @inlinable
+  public static func canDecode(_ value: borrowing JavaScriptValue) -> Bool {
+    return value.isObject()
+  }
+
+  @JavaScriptActor
+  @inlinable
+  public static func canDecode(_ value: borrowing JavaScriptUnownedValue) -> Bool {
+    return value.isObject()
+  }
+
   @JavaScriptActor
   @inlinable
   public static func decode(_ value: borrowing JavaScriptValue, in runtime: borrowing JavaScriptRuntime) throws

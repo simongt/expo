@@ -28,6 +28,19 @@ public protocol JavaScriptDecodable {
   /// can read straight from the borrowed value override it to stay zero-copy.
   @JavaScriptActor
   static func decode(_ value: borrowing JavaScriptUnownedValue, in runtime: borrowing JavaScriptRuntime) throws -> Self
+
+  /// Returns whether the JavaScript type of `value` is one `decode` can accept, from type checks alone.
+  ///
+  /// A `false` is definitive: `decode` would throw for this value. A `true` only means the type
+  /// matches, so `decode` may still throw, for example for an out-of-range number or a missing record
+  /// field. Code that picks between several types, like a union, calls it to skip the ones that can't
+  /// match without paying for a thrown error. Defaults to `true`.
+  @JavaScriptActor
+  static func canDecode(_ value: borrowing JavaScriptValue) -> Bool
+
+  /// The `JavaScriptUnownedValue` overload of `canDecode(_:)`.
+  @JavaScriptActor
+  static func canDecode(_ value: borrowing JavaScriptUnownedValue) -> Bool
 }
 
 extension JavaScriptDecodable {
@@ -43,5 +56,18 @@ extension JavaScriptDecodable {
     -> Self
   {
     return try decode(value.copied(in: runtime), in: runtime)
+  }
+
+  /// Default: accepts every value, so a conformer that doesn't override it is always tried.
+  @JavaScriptActor
+  @inlinable
+  public static func canDecode(_ value: borrowing JavaScriptValue) -> Bool {
+    return true
+  }
+
+  @JavaScriptActor
+  @inlinable
+  public static func canDecode(_ value: borrowing JavaScriptUnownedValue) -> Bool {
+    return true
   }
 }

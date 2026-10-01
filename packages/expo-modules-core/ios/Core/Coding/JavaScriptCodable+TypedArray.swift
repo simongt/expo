@@ -10,6 +10,18 @@ import ExpoModulesJSI
 extension TypedArray: JavaScriptDecodable, JavaScriptEncodable {
   @JavaScriptActor
   @inlinable
+  public static func canDecode(_ value: borrowing JavaScriptValue) -> Bool {
+    return value.isObject()
+  }
+
+  @JavaScriptActor
+  @inlinable
+  public static func canDecode(_ value: borrowing JavaScriptUnownedValue) -> Bool {
+    return value.isObject()
+  }
+
+  @JavaScriptActor
+  @inlinable
   public static func encode(_ value: TypedArray, in runtime: borrowing JavaScriptRuntime) throws -> JavaScriptValue {
     // No byte copy: the wrapper already owns the JS typed array, so hand the same object back.
     return value.jsTypedArray.asValue()

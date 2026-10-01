@@ -225,6 +225,18 @@ public final class ArrayBuffer: AnyArrayBuffer, Sendable {
 }
 
 extension ArrayBuffer: JavaScriptDecodable, JavaScriptEncodable {
+  @JavaScriptActor
+  @inlinable
+  public static func canDecode(_ value: borrowing JavaScriptValue) -> Bool {
+    return value.isObject()
+  }
+
+  @JavaScriptActor
+  @inlinable
+  public static func canDecode(_ value: borrowing JavaScriptUnownedValue) -> Bool {
+    return value.isObject()
+  }
+
   // MARK: - JavaScriptDecodable
   @JavaScriptActor
   @inlinable

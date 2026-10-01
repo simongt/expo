@@ -11,6 +11,18 @@ import Foundation
 extension Date: JavaScriptCodable {
   @JavaScriptActor
   @inlinable
+  public static func canDecode(_ value: borrowing JavaScriptValue) -> Bool {
+    return value.isNumber() || value.isString() || value.isObject()
+  }
+
+  @JavaScriptActor
+  @inlinable
+  public static func canDecode(_ value: borrowing JavaScriptUnownedValue) -> Bool {
+    return value.isNumber() || value.isString() || value.isObject()
+  }
+
+  @JavaScriptActor
+  @inlinable
   public static func decode(_ value: borrowing JavaScriptValue, in runtime: borrowing JavaScriptRuntime) throws -> Date
   {
     // The cheap tag checks come before `is("Date")`, which does a global lookup plus an `instanceof`

@@ -17,6 +17,18 @@ import CoreGraphics
 extension Bool: JavaScriptCodable {
   @JavaScriptActor
   @inlinable
+  public static func canDecode(_ value: borrowing JavaScriptValue) -> Bool {
+    return value.isBool()
+  }
+
+  @JavaScriptActor
+  @inlinable
+  public static func canDecode(_ value: borrowing JavaScriptUnownedValue) -> Bool {
+    return value.isBool()
+  }
+
+  @JavaScriptActor
+  @inlinable
   public static func decode(_ value: borrowing JavaScriptValue, in runtime: borrowing JavaScriptRuntime) throws -> Bool
   {
     return try value.asBool()
@@ -40,6 +52,18 @@ extension Bool: JavaScriptCodable {
 // MARK: - String
 
 extension String: JavaScriptCodable {
+  @JavaScriptActor
+  @inlinable
+  public static func canDecode(_ value: borrowing JavaScriptValue) -> Bool {
+    return value.isString()
+  }
+
+  @JavaScriptActor
+  @inlinable
+  public static func canDecode(_ value: borrowing JavaScriptUnownedValue) -> Bool {
+    return value.isString()
+  }
+
   @JavaScriptActor
   @inlinable
   public static func decode(_ value: borrowing JavaScriptValue, in runtime: borrowing JavaScriptRuntime) throws
@@ -76,6 +100,18 @@ extension String: JavaScriptCodable {
 extension Double: JavaScriptCodable {
   @JavaScriptActor
   @inlinable
+  public static func canDecode(_ value: borrowing JavaScriptValue) -> Bool {
+    return value.isNumber()
+  }
+
+  @JavaScriptActor
+  @inlinable
+  public static func canDecode(_ value: borrowing JavaScriptUnownedValue) -> Bool {
+    return value.isNumber()
+  }
+
+  @JavaScriptActor
+  @inlinable
   public static func decode(_ value: borrowing JavaScriptValue, in runtime: borrowing JavaScriptRuntime) throws
     -> Double
   {
@@ -102,6 +138,18 @@ extension Double: JavaScriptCodable {
 extension Float: JavaScriptCodable {
   @JavaScriptActor
   @inlinable
+  public static func canDecode(_ value: borrowing JavaScriptValue) -> Bool {
+    return value.isNumber()
+  }
+
+  @JavaScriptActor
+  @inlinable
+  public static func canDecode(_ value: borrowing JavaScriptUnownedValue) -> Bool {
+    return value.isNumber()
+  }
+
+  @JavaScriptActor
+  @inlinable
   public static func decode(_ value: borrowing JavaScriptValue, in runtime: borrowing JavaScriptRuntime) throws -> Float
   {
     return try Float(value.asDouble())
@@ -123,6 +171,18 @@ extension Float: JavaScriptCodable {
 }
 
 extension CGFloat: JavaScriptCodable {
+  @JavaScriptActor
+  @inlinable
+  public static func canDecode(_ value: borrowing JavaScriptValue) -> Bool {
+    return value.isNumber()
+  }
+
+  @JavaScriptActor
+  @inlinable
+  public static func canDecode(_ value: borrowing JavaScriptUnownedValue) -> Bool {
+    return value.isNumber()
+  }
+
   @JavaScriptActor
   @inlinable
   public static func decode(_ value: borrowing JavaScriptValue, in runtime: borrowing JavaScriptRuntime) throws
@@ -172,6 +232,18 @@ extension CGFloat: JavaScriptCodable {
 extension Int: JavaScriptCodable {
   @JavaScriptActor
   @inlinable
+  public static func canDecode(_ value: borrowing JavaScriptValue) -> Bool {
+    return value.isNumber() || value.isBigInt()
+  }
+
+  @JavaScriptActor
+  @inlinable
+  public static func canDecode(_ value: borrowing JavaScriptUnownedValue) -> Bool {
+    return value.isNumber() || value.isBigInt()
+  }
+
+  @JavaScriptActor
+  @inlinable
   public static func decode(_ value: borrowing JavaScriptValue, in runtime: borrowing JavaScriptRuntime) throws -> Int {
     return try decodeWideInteger(value, as: Int.self)
   }
@@ -192,6 +264,18 @@ extension Int: JavaScriptCodable {
 }
 
 extension Int8: JavaScriptCodable {
+  @JavaScriptActor
+  @inlinable
+  public static func canDecode(_ value: borrowing JavaScriptValue) -> Bool {
+    return value.isNumber()
+  }
+
+  @JavaScriptActor
+  @inlinable
+  public static func canDecode(_ value: borrowing JavaScriptUnownedValue) -> Bool {
+    return value.isNumber()
+  }
+
   @JavaScriptActor
   @inlinable
   public static func decode(_ value: borrowing JavaScriptValue, in runtime: borrowing JavaScriptRuntime) throws -> Int8
@@ -217,6 +301,18 @@ extension Int8: JavaScriptCodable {
 extension Int16: JavaScriptCodable {
   @JavaScriptActor
   @inlinable
+  public static func canDecode(_ value: borrowing JavaScriptValue) -> Bool {
+    return value.isNumber()
+  }
+
+  @JavaScriptActor
+  @inlinable
+  public static func canDecode(_ value: borrowing JavaScriptUnownedValue) -> Bool {
+    return value.isNumber()
+  }
+
+  @JavaScriptActor
+  @inlinable
   public static func decode(_ value: borrowing JavaScriptValue, in runtime: borrowing JavaScriptRuntime) throws -> Int16
   {
     return try decodeInteger(value.asDouble(), as: Int16.self)
@@ -238,6 +334,18 @@ extension Int16: JavaScriptCodable {
 }
 
 extension Int32: JavaScriptCodable {
+  @JavaScriptActor
+  @inlinable
+  public static func canDecode(_ value: borrowing JavaScriptValue) -> Bool {
+    return value.isNumber()
+  }
+
+  @JavaScriptActor
+  @inlinable
+  public static func canDecode(_ value: borrowing JavaScriptUnownedValue) -> Bool {
+    return value.isNumber()
+  }
+
   @JavaScriptActor
   @inlinable
   public static func decode(_ value: borrowing JavaScriptValue, in runtime: borrowing JavaScriptRuntime) throws -> Int32
@@ -263,6 +371,18 @@ extension Int32: JavaScriptCodable {
 extension Int64: JavaScriptCodable {
   @JavaScriptActor
   @inlinable
+  public static func canDecode(_ value: borrowing JavaScriptValue) -> Bool {
+    return value.isNumber() || value.isBigInt()
+  }
+
+  @JavaScriptActor
+  @inlinable
+  public static func canDecode(_ value: borrowing JavaScriptUnownedValue) -> Bool {
+    return value.isNumber() || value.isBigInt()
+  }
+
+  @JavaScriptActor
+  @inlinable
   public static func decode(_ value: borrowing JavaScriptValue, in runtime: borrowing JavaScriptRuntime) throws -> Int64
   {
     return try decodeWideInteger(value, as: Int64.self)
@@ -284,6 +404,18 @@ extension Int64: JavaScriptCodable {
 }
 
 extension UInt: JavaScriptCodable {
+  @JavaScriptActor
+  @inlinable
+  public static func canDecode(_ value: borrowing JavaScriptValue) -> Bool {
+    return value.isNumber() || value.isBigInt()
+  }
+
+  @JavaScriptActor
+  @inlinable
+  public static func canDecode(_ value: borrowing JavaScriptUnownedValue) -> Bool {
+    return value.isNumber() || value.isBigInt()
+  }
+
   @JavaScriptActor
   @inlinable
   public static func decode(_ value: borrowing JavaScriptValue, in runtime: borrowing JavaScriptRuntime) throws -> UInt
@@ -309,6 +441,18 @@ extension UInt: JavaScriptCodable {
 extension UInt8: JavaScriptCodable {
   @JavaScriptActor
   @inlinable
+  public static func canDecode(_ value: borrowing JavaScriptValue) -> Bool {
+    return value.isNumber()
+  }
+
+  @JavaScriptActor
+  @inlinable
+  public static func canDecode(_ value: borrowing JavaScriptUnownedValue) -> Bool {
+    return value.isNumber()
+  }
+
+  @JavaScriptActor
+  @inlinable
   public static func decode(_ value: borrowing JavaScriptValue, in runtime: borrowing JavaScriptRuntime) throws -> UInt8
   {
     return try decodeInteger(value.asDouble(), as: UInt8.self)
@@ -330,6 +474,18 @@ extension UInt8: JavaScriptCodable {
 }
 
 extension UInt16: JavaScriptCodable {
+  @JavaScriptActor
+  @inlinable
+  public static func canDecode(_ value: borrowing JavaScriptValue) -> Bool {
+    return value.isNumber()
+  }
+
+  @JavaScriptActor
+  @inlinable
+  public static func canDecode(_ value: borrowing JavaScriptUnownedValue) -> Bool {
+    return value.isNumber()
+  }
+
   @JavaScriptActor
   @inlinable
   public static func decode(_ value: borrowing JavaScriptValue, in runtime: borrowing JavaScriptRuntime) throws
@@ -358,6 +514,18 @@ extension UInt16: JavaScriptCodable {
 extension UInt32: JavaScriptCodable {
   @JavaScriptActor
   @inlinable
+  public static func canDecode(_ value: borrowing JavaScriptValue) -> Bool {
+    return value.isNumber()
+  }
+
+  @JavaScriptActor
+  @inlinable
+  public static func canDecode(_ value: borrowing JavaScriptUnownedValue) -> Bool {
+    return value.isNumber()
+  }
+
+  @JavaScriptActor
+  @inlinable
   public static func decode(_ value: borrowing JavaScriptValue, in runtime: borrowing JavaScriptRuntime) throws
     -> UInt32
   {
@@ -382,6 +550,18 @@ extension UInt32: JavaScriptCodable {
 }
 
 extension UInt64: JavaScriptCodable {
+  @JavaScriptActor
+  @inlinable
+  public static func canDecode(_ value: borrowing JavaScriptValue) -> Bool {
+    return value.isNumber() || value.isBigInt()
+  }
+
+  @JavaScriptActor
+  @inlinable
+  public static func canDecode(_ value: borrowing JavaScriptUnownedValue) -> Bool {
+    return value.isNumber() || value.isBigInt()
+  }
+
   @JavaScriptActor
   @inlinable
   public static func decode(_ value: borrowing JavaScriptValue, in runtime: borrowing JavaScriptRuntime) throws
