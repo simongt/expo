@@ -1,5 +1,12 @@
 # Changelog
 
+## 58.0.10
+
+### Patch Changes
+
+- Updated dependencies. ([#49498](https://github.com/expo/expo/pull/49498))
+  - expo-task-manager@58.0.11
+
 ## 58.0.9
 
 ### Patch Changes

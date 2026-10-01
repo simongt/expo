@@ -1,5 +1,11 @@
 # Changelog
 
+## 58.0.11
+
+### Patch Changes
+
+- [Android] Fix update during active Glance sessions. ([#50850](https://github.com/expo/expo/pull/50850) by [@jakex7](https://github.com/jakex7))
+
 ## 58.0.10
 
 ### Patch Changes

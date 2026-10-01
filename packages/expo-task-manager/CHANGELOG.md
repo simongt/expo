@@ -1,5 +1,11 @@
 # Changelog
 
+## 58.0.11
+
+### Patch Changes
+
+- [Android] Fix `TaskService` losing its `Context` (it held a `WeakReference` to the creating `ReactContext`), after which registering or unregistering a task threw a `NullPointerException` from `SharedPreferences.getAll()`. ([#49498](https://github.com/expo/expo/pull/49498) by [@retu2libc](https://github.com/retu2libc))
+
 ## 58.0.10
 
 ### Patch Changes

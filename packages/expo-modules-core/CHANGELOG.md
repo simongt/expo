@@ -1,5 +1,13 @@
 # Changelog
 
+## 58.0.11
+
+### Patch Changes
+
+- [iOS] `@Record` now accepts properties that hold free-form `Any` values, such as `[String: Any]?` or `[Any]`. ([#50660](https://github.com/expo/expo/pull/50660) by [@tsapeta](https://github.com/tsapeta))
+- Updated dependencies. ([#50660](https://github.com/expo/expo/pull/50660))
+  - expo-modules-jsi@58.0.7
+
 ## 58.0.10
 
 ### Patch Changes

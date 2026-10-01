@@ -1,6 +1,6 @@
 {
   "name": "expo-app-intents",
-  "version": "0.4.8",
+  "version": "0.5.0",
   "description": "Expose Apple App Intents (Siri, Shortcuts, Spotlight, Apple Intelligence) from Expo apps",
   "main": "build/index.js",
   "types": "build/index.d.ts",
